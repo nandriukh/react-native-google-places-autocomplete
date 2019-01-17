@@ -612,9 +612,9 @@ export default class GooglePlacesAutocomplete extends Component {
   }
 
   animatedParallel = (
-    transleteValue: number,
-    opacityValue: number,
-    fs: number,
+    transleteValue,
+    opacityValue,
+    fs,
     // transleteXValue: number,
   ) => {
     const { animation, opacity, scale, text } = this.state;
