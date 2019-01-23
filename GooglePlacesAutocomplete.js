@@ -229,18 +229,19 @@ export default class GooglePlacesAutocomplete extends Component {
           if (responseJSON.status === 'OK') {
             if (this._isMounted === true) {
               const details = responseJSON.result;
+              console.log('DETALIIIS', details)
               this._disableRowLoaders();
 
               this.setState(
                 {
                 text: rowData.description,
                 },
-                this.props.handleValue(rowData.description)
+                // this.props.handleValue(rowData.description)
               );
               this._onBlur();
 
               delete rowData.isLoading;
-              this.props.onPress(rowData, details);
+              this.props.onPress(rowData.description, details.geometry.location);
             }
           } else {
             this._disableRowLoaders();
