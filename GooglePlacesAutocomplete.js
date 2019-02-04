@@ -68,7 +68,8 @@ export default class GooglePlacesAutocomplete extends Component {
   }
 
   getInitialState = () => {
-    const preTranslate = this.props.text.length > 0 ? TranslateY : 0;
+    const { text } = this.props;
+    const preTranslate = text && text.length > 0 ? TranslateY : 0;
     return ({
       text: this.props.getDefaultValue(),
       dataSource: this.buildRowsFromResults([]),
