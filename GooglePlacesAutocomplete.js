@@ -68,10 +68,10 @@ export default class GooglePlacesAutocomplete extends Component {
   }
 
   getInitialState = () => {
-    const { text } = this.props;
-    const preTranslate = text && text.length > 0 ? TranslateY : 0;
+    const { getDefaultValue } = this.props;
+    const preTranslate = getDefaultValue() && getDefaultValue().length > 0 ? TranslateY : 0;
     return ({
-      text: this.props.getDefaultValue(),
+      text: getDefaultValue(),
       dataSource: this.buildRowsFromResults([]),
       listViewDisplayed: this.props.listViewDisplayed === 'auto' ? false : this.props.listViewDisplayed,
       animation: new Animated.Value(preTranslate),
