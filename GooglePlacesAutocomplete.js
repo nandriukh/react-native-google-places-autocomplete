@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import Qs from 'qs';
 import debounce from 'lodash.debounce';
+import { colors } from '../../src/global/colors';
 
 const WINDOW = Dimensions.get('window');
 
@@ -605,6 +606,10 @@ export default class GooglePlacesAutocomplete extends Component {
   
 
   _onFocus = () => {
+    const { error, clearError } = this.props;
+    if (!!error.length) {
+      clearError();
+    }
     this.setState(
       { 
         listViewDisplayed: true,
@@ -718,7 +723,7 @@ export default class GooglePlacesAutocomplete extends Component {
     return null;
   }
   render() {
-    const { BorderInput, lable } = this.props;
+    const { BorderInput, lable, error } = this.props;
     const { animation, isFocused } = this.state;
     let {
       onFocus,
@@ -738,15 +743,12 @@ export default class GooglePlacesAutocomplete extends Component {
                 this.props.styles.lable,
                 { transform: [
                   { translateY: animation },
-                  // { translateX: animationX },
-                  // { scaleX: scale },
-                  // { scaleY: scale },
                 ],
                 },
-                { opacity: isFocused ? 1 : 0.7 },
+                { opacity: isFocused || error ? 1 : 0.7, color: error ? colors.errorRed : colors.darkBlue },
               ]}
             >
-              {lable}
+              {error ? error : lable}
             </Animated.Text>
 
             {/* {this._renderLeftButton()} */}
@@ -766,7 +768,7 @@ export default class GooglePlacesAutocomplete extends Component {
               { ...userProps }
               onChangeText={this._handleChangeText}
             />
-            <BorderInput isFocused={isFocused} />
+            <BorderInput isFocused={isFocused} invalid={!!error.length} />
             {/* {this._renderRightButton()} */}
           </View>
         }
