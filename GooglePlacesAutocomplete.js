@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import Qs from 'qs';
 import debounce from 'lodash.debounce';
-import { colors } from '../../src/global/colors';
+
 
 const WINDOW = Dimensions.get('window');
 
@@ -745,7 +745,7 @@ export default class GooglePlacesAutocomplete extends Component {
                   { translateY: animation },
                 ],
                 },
-                { opacity: isFocused || error ? 1 : 0.7, color: error ? colors.errorRed : colors.darkBlue },
+                { opacity: isFocused || error ? 1 : 0.7, color: error ? '#FF6666' : '#222C57' },
               ]}
             >
               {error ? error : lable}
