@@ -607,7 +607,7 @@ export default class GooglePlacesAutocomplete extends Component {
 
   _onFocus = () => {
     const { error, clearError } = this.props;
-    if (!!error.length) {
+    if (error && !!error.length) {
       clearError();
     }
     this.setState(
@@ -768,7 +768,7 @@ export default class GooglePlacesAutocomplete extends Component {
               { ...userProps }
               onChangeText={this._handleChangeText}
             />
-            <BorderInput isFocused={isFocused} invalid={!!error.length} />
+            <BorderInput isFocused={isFocused} invalid={error && !!error.length} />
             {/* {this._renderRightButton()} */}
           </View>
         }
